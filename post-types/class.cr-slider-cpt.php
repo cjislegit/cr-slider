@@ -72,8 +72,9 @@ if (!class_exists('CR_Slider_Post_Type')) {
                 $old_link_url = get_post_meta($post_id, 'url', true);
                 $new_link_url = $new_link_text = $_POST['cr_slider_link_url'];
 
-                update_post_meta($post_id, 'cr_slider_text', $new_link_text, $old_link_text);
-                update_post_meta($post_id, 'cr_slider_url', $new_link_url, $old_link_url);
+                //Sanatizes and pushes data to db
+                update_post_meta($post_id, 'cr_slider_text', sanitize_text_filed($new_link_text), $old_link_text);
+                update_post_meta($post_id, 'cr_slider_url', esc_url_raw($new_link_url), $old_link_url);
             }
         }
     }
