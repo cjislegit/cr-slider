@@ -28,6 +28,9 @@ if (!class_exists('CR_Slider')) {
         {
             $this->define_constants();
 
+            //Creates menu
+            add_action('admin_menu', array($this, 'add_menu'));
+
             //Requires the file
             require_once CR_SLIDER_PATH . 'post-types/class.cr-slider-cpt.php';
             //Creates a new instance of the class
@@ -63,6 +66,33 @@ if (!class_exists('CR_Slider')) {
         public static function uninstall()
         {
             # code...
+        }
+
+        //Adds menu to the sidebar
+        public function add_menu()
+        {
+            add_menu_page(
+                //Title for menu page
+                'CR Slider Options',
+                //Menu title
+                'CR Slider',
+                //What kind of access is needed
+                'manage_options',
+                //Slug
+                'cr_slider_admin',
+                //Call back function to provide page
+                array($this, 'cr_slider_settings_page'),
+                //Adds an icon, this is optional
+                'dashicons-images-alt2',
+                //Position of the icon, also optional and better to leave as is
+                // 10
+
+            );
+        }
+
+        public function cr_slider_settings_page()
+        {
+            echo "This is a test page";
         }
     }
 }
