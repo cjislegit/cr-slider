@@ -11,6 +11,10 @@ if (!class_exists('CR_Slider_Post_Type')) {
             add_action('save_post', array($this, 'save_post'), 10, 2);
             //Adds columns to the slider table
             add_filter('manage_cr-slider_posts_columns', array($this, 'cr_slider_cpt_columns'));
+            //Adds items to the new columns
+            add_action('manage_cr-slider_posts_custom_column', array($this, 'cr_slider_custom_columns'), 10, 2);
+            //Makes new columns sortable
+            add_filter('manage_edit-cr-slider_sortable_columns', array($this, 'cr_slider_sortable_columns'));
         }
 
         public function create_post_type()
@@ -48,10 +52,33 @@ if (!class_exists('CR_Slider_Post_Type')) {
             );
         }
 
+        //Creates two columns in the slider table Link Text and Link URL
         public function cr_slider_cpt_columns($columns)
         {
-            $columns['cr_slider_links_text'] = esc_html__('Link Text', 'cr-slider');
+            $columns['cr_slider_link_text'] = esc_html__('Link Text', 'cr-slider');
             $columns['cr_slider_link_url'] = esc_html__('Link URL', 'cr-slider');
+            return $columns;
+        }
+
+        //Adds data to the custom columns
+        public function cr_slider_custom_columns($column, $post_id)
+        {
+            switch ($column) {
+                case 'cr_slider_link_text':
+                    echo esc_html(get_post_meta($post_id, 'cr_slider_link_text', true));
+                    break;
+
+                case 'cr_slider_link_url':
+                    echo esc_url(get_post_meta($post_id, 'cr_slider_link_url', true));
+                    break;
+            }
+        }
+
+        public function cr_slider_sortable_columns($columns)
+        {
+            $columns['cr_slider_link_text'] = 'cr_slider_link_text';
+            $columns['cr_slider_link_url'] = 'cr_slider_link_url';
+
             return $columns;
         }
 
