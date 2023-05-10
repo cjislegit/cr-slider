@@ -129,7 +129,7 @@ if (!class_exists('CR_Slider')) {
 
         public function cr_slider_settings_page()
         {
-            echo "This is a test page";
+            require CR_SLIDER_PATH . "views/settings-page.php";
         }
     }
 }
