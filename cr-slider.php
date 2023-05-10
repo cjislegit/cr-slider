@@ -88,6 +88,43 @@ if (!class_exists('CR_Slider')) {
                 // 10
 
             );
+
+            //Creates a submenu option for manage slides that points back to the Slider page
+            add_submenu_page(
+                //Slug of the parent menu
+                'cr_slider_admin',
+                //Page title
+                'Manage Slides',
+                //Menu title
+                'Manage Slides',
+                //What kind of access is needed
+                'manage_options',
+                //Slug for sub menu, in this case it is the url of the Slider page
+                'edit.php?post_type=cr-slider',
+                //The call back function to provide page, in this case using null because we are using the slider page
+                null,
+                //Position of the icon, also optional and better to leave as is
+                null
+            );
+
+            add_submenu_page(
+                //Slug of the parent menu
+                'cr_slider_admin',
+                //Page title
+                'Add New Slide',
+                //Menu title
+                'Add New Slide',
+                //What kind of access is needed
+                'manage_options',
+                //Slug for sub menu, in this case it is the url of the Add New page
+                'post-new.php?post_type=cr-slider',
+                //The call back function to provide page, in this case using null because we are using the add new page
+                null,
+                //Position of the icon, also optional and better to leave as is
+                null
+
+            );
+
         }
 
         public function cr_slider_settings_page()

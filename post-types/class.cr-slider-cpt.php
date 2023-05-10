@@ -37,7 +37,8 @@ if (!class_exists('CR_Slider_Post_Type')) {
                     ),
                     'hierarchical' => false,
                     'show_ui' => true,
-                    'show_in_menu' => true,
+                    //Set to false to hide in the menu since seperate menu item has already been created
+                    'show_in_menu' => false,
                     'menu_position' => 5,
                     'show_in_admin_bar' => true,
                     'show_in_nav_menus' => true,
