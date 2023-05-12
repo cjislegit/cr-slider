@@ -35,6 +35,12 @@ if (!class_exists('CR_Slider')) {
             require_once CR_SLIDER_PATH . 'post-types/class.cr-slider-cpt.php';
             //Creates a new instance of the class
             $CR_Slider_Post_Type = new CR_Slider_Post_Type();
+
+            //Requires the file
+            require_once CR_SLIDER_PATH . 'class.cr-slider-settings.php';
+            //Creates a new instance of the class
+            $CR_Slider_Settings = new CR_Slider_Settings();
+
         }
 
         public function define_constants()
