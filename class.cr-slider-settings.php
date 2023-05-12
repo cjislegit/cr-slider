@@ -13,6 +13,7 @@ if (!class_exists('CR_Slider_Settings')) {
 
         public function admin_init()
         {
+            register_setting('cr_slider_group', 'cr_slider_options');
             //Creates the first section
             add_settings_section(
                 //Section ID
