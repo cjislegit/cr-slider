@@ -26,6 +26,17 @@ if (!class_exists('CR_Slider_Settings')) {
                 'cr_slider_page1'
             );
 
+            add_settings_section(
+                //Section ID
+                'cr_slider_second_section',
+                //Title of the section
+                'Other Plugin Options',
+                //Call back function that can be used to add text with explantaiton below the section title, its optional
+                null,
+                //Name of the page
+                'cr_slider_page2'
+            );
+
             //Addes fields
             add_settings_field(
                 //Id for the field that is used to get the field from the db table
@@ -39,6 +50,21 @@ if (!class_exists('CR_Slider_Settings')) {
                 //ID of the section
                 'cr_slider_main_section'
             );
+
+            //Addes fields
+            add_settings_field(
+                //Id for the field that is used to get the field from the db table
+                'cr_slider_title',
+                //Title of the field, just works to explain the field
+                'Slider Title',
+                //Creates the fields content, optional
+                array($this, 'cr_slider_title_callback'),
+                //Id of the page where this field appears
+                'cr_slider_page2',
+                //ID of the section
+                'cr_slider_second_section'
+            );
+
         }
 
         public function cr_slider_shortcode_callback()
@@ -46,6 +72,13 @@ if (!class_exists('CR_Slider_Settings')) {
             ?>
 <span>Use the shortcode [cr_slider] to display the slider in any page/post/widget</span>
 <?php
+}
+
+        public function cr_slider_title_callback()
+        {
+            ?>
+<input type='text' name="cr_slider_options[cr_slider_title]" id='cr_slider_title'
+    value="<?php echo isset(self::$options['cr_slider_title']) ? esc_attr(self::$options['cr_slider_title']) : ''; ?>" <?php
 }
     }
 }
