@@ -65,6 +65,34 @@ if (!class_exists('CR_Slider_Settings')) {
                 'cr_slider_second_section'
             );
 
+            //Addes fields
+            add_settings_field(
+                //Id for the field that is used to get the field from the db table
+                'cr_slider_bullets',
+                //Title of the field, just works to explain the field
+                'Display Bullets',
+                //Creates the fields content, optional
+                array($this, 'cr_slider_bullets_callback'),
+                //Id of the page where this field appears
+                'cr_slider_page2',
+                //ID of the section
+                'cr_slider_second_section'
+            );
+
+            //Addes fields
+            add_settings_field(
+                //Id for the field that is used to get the field from the db table
+                'cr_slider_style',
+                //Title of the field, just works to explain the field
+                'Slider Style',
+                //Creates the fields content, optional
+                array($this, 'cr_slider_style_callback'),
+                //Id of the page where this field appears
+                'cr_slider_page2',
+                //ID of the section
+                'cr_slider_second_section'
+            );
+
         }
 
         public function cr_slider_shortcode_callback()
@@ -80,5 +108,32 @@ if (!class_exists('CR_Slider_Settings')) {
 <input type='text' name="cr_slider_options[cr_slider_title]" id='cr_slider_title'
     value="<?php echo isset(self::$options['cr_slider_title']) ? esc_attr(self::$options['cr_slider_title']) : ''; ?>" <?php
 }
+
+        public function cr_slider_bullets_callback()
+        {
+            ?> <input type='checkbox' name='cr_slider_options[cr_slider_bullets]' id='cr_slider_bullets' value='1' <?php
+if (isset(self::$options['cr_slider_bullets'])) {
+                checked('1', self::$options['cr_slider_bullets'], true);
+            }
+            ?> />
+<label for='cr_slider_bullets'>Display Bullets</label>
+
+<?php
+}
+
+        public function cr_slider_style_callback()
+        {
+            ?>
+<select id='cr_slider_style' name='cr_slider_options[cr_slider_style]'>
+    <option value='style-1'
+        <?php isset(self::$options['cr_slider_style']) ? selected('style-1', self::$options['cr_slider_style'], true) : '';?>>
+        Style-1</option>
+    <option value='style-2'
+        <?php isset(self::$options['cr_slider_style']) ? selected('style-2', self::$options['cr_slider_style'], true) : '';?>>
+        Style-2</option>
+
+    <?php
+}
+
     }
 }
