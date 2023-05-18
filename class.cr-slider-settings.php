@@ -48,7 +48,11 @@ if (!class_exists('CR_Slider_Settings')) {
                 //Id of the page where this field appears
                 'cr_slider_page1',
                 //ID of the section
-                'cr_slider_main_section'
+                'cr_slider_main_section',
+                //Links the label to the field
+                array(
+                    'label_for' => 'cr_slider_shortcode',
+                )
             );
 
             //Addes fields
@@ -62,7 +66,11 @@ if (!class_exists('CR_Slider_Settings')) {
                 //Id of the page where this field appears
                 'cr_slider_page2',
                 //ID of the section
-                'cr_slider_second_section'
+                'cr_slider_second_section',
+                //Links the label to the field
+                array(
+                    'label_for' => 'cr_slider_title',
+                )
             );
 
             //Addes fields
@@ -76,7 +84,11 @@ if (!class_exists('CR_Slider_Settings')) {
                 //Id of the page where this field appears
                 'cr_slider_page2',
                 //ID of the section
-                'cr_slider_second_section'
+                'cr_slider_second_section',
+                //Links the label to the field
+                array(
+                    'label_for' => 'cr_slider_bullets',
+                )
             );
 
             //Addes fields
@@ -90,7 +102,11 @@ if (!class_exists('CR_Slider_Settings')) {
                 //Id of the page where this field appears
                 'cr_slider_page2',
                 //ID of the section
-                'cr_slider_second_section'
+                'cr_slider_second_section',
+                //Links the label to the field can also be used to send args to the call back functions
+                array(
+                    'label_for' => 'cr_slider_style',
+                )
             );
 
         }
