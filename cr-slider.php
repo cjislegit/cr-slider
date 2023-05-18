@@ -135,6 +135,17 @@ if (!class_exists('CR_Slider')) {
 
         public function cr_slider_settings_page()
         {
+            //Checks the user permissions before getting page
+            if (!current_user_can('manage_options')) {
+                return;
+            }
+
+            //Checks if settings were saved and shows success message
+            if (isset($_GET['settings-updated'])) {
+                add_settings_error('cr_slider_options', 'cr_slider_message', 'Setting Saved', 'success');
+            }
+            settings_errors('cr_slider_options');
+
             require CR_SLIDER_PATH . "views/settings-page.php";
         }
     }
