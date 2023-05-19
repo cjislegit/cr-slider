@@ -41,6 +41,11 @@ if (!class_exists('CR_Slider')) {
             //Creates a new instance of the class
             $CR_Slider_Settings = new CR_Slider_Settings();
 
+            //Requires the file
+            require_once CR_SLIDER_PATH . 'shortcode/class.cr-slider-shortcode.php';
+            //Creates a new instance of the class
+            $CR_Slider_Shortcode = new CR_Slider_Shortcode();
+
         }
 
         public function define_constants()

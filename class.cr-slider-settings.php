@@ -158,6 +158,7 @@ if (isset(self::$options['cr_slider_bullets'])) {
                 switch ($key) {
                     case 'cr_slider_title':
                         if (empty($value)) {
+                            add_settings_error('cr_slider_options', 'cr_slider_message', 'Tht title field cannot be empty', 'error');
                             $value = 'Please type some text';
                         }
                         $new_input[$key] = sanitize_text_field($value);
