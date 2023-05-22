@@ -13,21 +13,34 @@ $args = array(
 
 $my_query = new WP_Query($args);
 
+if ($my_query->have_posts()):
+    while ($my_query->have_posts()): $my_query->the_post();
+
+        $button_text = get_post_meta(get_the_ID(), 'cr_slider_link_text', true);
+        $button_url = get_post_meta(get_the_ID(), 'cr_slider_link_url', true);
+
+        ?>
+		        <li>
+		            <?php the_post_thumbnail('full', array('class' => 'img-fluid'));?>
+		            <div class="mvs-container">
+		                <div class="slider-details-container">
+		                    <div class="wrapper">
+		                        <div class="slider-title">
+		                            <h2><?php the_title();?></h2>
+		                        </div>
+		                        <div class="slider-description">
+		                            <div class="subtitle"><?php the_content();?></div>
+		                            <a class="link" href="<?=esc_attr($button_url);?>"><?=esc_html($button_text);?></a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </li>
+		        <?php
+    endwhile;
+    //Restets post global to default
+    wp_reset_postdata();
+endif;
 ?>
-        <li>
-            <div class="mvs-container">
-                <div class="slider-details-container">
-                    <div class="wrapper">
-                        <div class="slider-title">
-                            <h2>Slider Title</h2>
-                        </div>
-                        <div class="slider-description">
-                            <div class="subtitle">Subtitle</div>
-                            <a class="link" href="#">Button text</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
     </ul>
 </div>
