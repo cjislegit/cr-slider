@@ -49,6 +49,9 @@ if (!class_exists('CR_Slider')) {
             //Enqueing js and css
             add_action('wp_enqueue_scripts', array($this, 'register_scripts'), 999);
 
+            //Enqueing backend js and css
+            add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'), 999);
+
         }
 
         public function define_constants()
@@ -163,6 +166,17 @@ if (!class_exists('CR_Slider')) {
             wp_register_script('cr-slider-options-js', CR_SLIDER_URL . 'vendor/flexslider/flexslider.js', array('jquery'), CR_SLIDER_VERSION, true);
             wp_register_style('cr-slider-main-css', CR_SLIDER_URL . 'vendor/flexslider/flexslider.css', array(), CR_SLIDER_VERSION, 'all');
             wp_register_style('cr-slider-style-css', CR_SLIDER_URL . 'assets/css/frontend.css', array(), CR_SLIDER_VERSION, 'all');
+        }
+
+        public function register_admin_scripts()
+        {
+            //Gets the type of the current post
+            global $typenow;
+            //Eneques the css only for post type cr-slider
+            if ($typenow == 'cr-slider') {
+                wp_enqueue_style('cr-slider-admin', CR_SLIDER_URL . 'assets/css/admin.css');
+
+            }
         }
     }
 }

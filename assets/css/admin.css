@@ -1,0 +1,9 @@
+.cr-slider-metabox label {
+  color: #f00;
+}
+.cr-slider-metabox td {
+  padding: 5px;
+}
+.cr-slider-metabox th {
+  padding: 10px 10px 5px 0;
+}
