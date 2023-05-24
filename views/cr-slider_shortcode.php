@@ -1,6 +1,7 @@
 <h3><?php echo (!empty($content)) ? esc_html($content) : esc_html(CR_Slider_Settings::$options['cr_slider_title']); ?>
 </h3>
-<div class="mv-slider flexslider ">
+<div
+    class="mv-slider flexslider <?=isset(CR_Slider_Settings::$options['cr_slider_style']) ? CR_Slider_Settings::$options['cr_slider_style'] : 'style-1';?>">
     <ul class="slides">
         <?php
 
@@ -21,7 +22,14 @@ if ($my_query->have_posts()):
 
         ?>
 		        <li>
-		            <?php the_post_thumbnail('full', array('class' => 'img-fluid'));?>
+		            <?php
+        if (has_post_thumbnail()) {
+            the_post_thumbnail('full', array('class' => 'img-fluid'));
+        } else {
+            echo "<img src='" . CR_SLIDER_URL . "assets/images/default.jpg' class='img-fluid wp-post-image' />";
+        }
+
+        ?>
 		            <div class="mvs-container">
 		                <div class="slider-details-container">
 		                    <div class="wrapper">

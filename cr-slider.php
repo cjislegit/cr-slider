@@ -28,6 +28,8 @@ if (!class_exists('CR_Slider')) {
         {
             $this->define_constants();
 
+            require_once CR_SLIDER_PATH . 'functions/functions.php';
+
             //Creates menu
             add_action('admin_menu', array($this, 'add_menu'));
 

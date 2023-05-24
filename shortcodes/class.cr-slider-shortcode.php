@@ -36,9 +36,9 @@ if (!class_exists('CR_Slider_Shortcode')) {
             ob_start();
             require CR_SLIDER_PATH . 'views/cr-slider_shortcode.php';
             wp_enqueue_script('cr-slider-main-jq');
-            wp_enqueue_script('cr-slider-options-js');
             wp_enqueue_style('cr-slider-main-css');
             wp_enqueue_style('cr-slider-style-css');
+            cr_slider_options();
             return ob_get_clean();
         }
     }
