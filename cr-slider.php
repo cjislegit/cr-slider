@@ -82,9 +82,24 @@ if (!class_exists('CR_Slider')) {
             unregister_post_type('cr-slider');
         }
 
+        //Runs when plugin is uninstalled
         public static function uninstall()
         {
-            # code...
+            //Deletes from options table
+            delete_option('cr_slider_options');
+            //Gets all cr-slider posts
+            $posts = get_posts(
+                array(
+                    'post' => 'cr-slider',
+                    'number_post' => -1,
+                    'post_status' => 'any',
+                )
+            );
+
+            //Loops through the posts and deletes them
+            foreach ($posts as $post) {
+                wp_delete_post('$post->ID', true);
+            }
         }
 
         //Adds menu to the sidebar
